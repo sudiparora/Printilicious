@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printly", "Printly\Printly.csproj", "{23929023-3D55-4263-929D-5CF7C9D2F079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Shared", "0.Shared", "{AD993A67-F61D-443F-9ACF-ECFC634B92B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Presentation", "1.Presentation", "{1B7D5E28-2261-4C6B-9B90-96DFB636DB39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Business", "2.Business", "{BA2FEE76-391B-4616-9C7A-575C6D5ACD01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.DataAccess", "3.DataAccess", "{DE788F35-B301-41C6-ABC8-4BB87298013E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printly.DataAccess", "Printly.DataAccess\Printly.DataAccess.csproj", "{F3845E18-2B0D-4F1C-B0F2-16E6CB2BB070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printly.Shared", "Printly.Shared\Printly.Shared.csproj", "{41EA075D-0EAD-49C9-8EF0-FA02BE306C3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printly.Entities", "Printly.Entities\Printly.Entities.csproj", "{CC32465E-9EFB-41CB-896A-DC5E19FF5239}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23929023-3D55-4263-929D-5CF7C9D2F079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23929023-3D55-4263-929D-5CF7C9D2F079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23929023-3D55-4263-929D-5CF7C9D2F079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23929023-3D55-4263-929D-5CF7C9D2F079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3845E18-2B0D-4F1C-B0F2-16E6CB2BB070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3845E18-2B0D-4F1C-B0F2-16E6CB2BB070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3845E18-2B0D-4F1C-B0F2-16E6CB2BB070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3845E18-2B0D-4F1C-B0F2-16E6CB2BB070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41EA075D-0EAD-49C9-8EF0-FA02BE306C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41EA075D-0EAD-49C9-8EF0-FA02BE306C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41EA075D-0EAD-49C9-8EF0-FA02BE306C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41EA075D-0EAD-49C9-8EF0-FA02BE306C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC32465E-9EFB-41CB-896A-DC5E19FF5239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC32465E-9EFB-41CB-896A-DC5E19FF5239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC32465E-9EFB-41CB-896A-DC5E19FF5239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC32465E-9EFB-41CB-896A-DC5E19FF5239}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23929023-3D55-4263-929D-5CF7C9D2F079} = {1B7D5E28-2261-4C6B-9B90-96DFB636DB39}
+		{F3845E18-2B0D-4F1C-B0F2-16E6CB2BB070} = {DE788F35-B301-41C6-ABC8-4BB87298013E}
+		{41EA075D-0EAD-49C9-8EF0-FA02BE306C3F} = {AD993A67-F61D-443F-9ACF-ECFC634B92B0}
+		{CC32465E-9EFB-41CB-896A-DC5E19FF5239} = {AD993A67-F61D-443F-9ACF-ECFC634B92B0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDE72870-A4E0-4D6C-B3AB-AA1BD1648553}
+	EndGlobalSection
+EndGlobal
