@@ -20,11 +20,22 @@ namespace Printly
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/lib/jquery-1.11.0.min.js",
+                      "~/Scripts/lib/bootstrap.min.js",
+                      "~/Scripts/lib/jquery.cookie.js",
+                      "~/Scripts/lib/waypoints.min.js",
+                      "~/Scripts/lib/modernizr.js",
+                      "~/Scripts/lib/bootstrap-hover-dropdown.js",
+                      "~/Scripts/lib/owl.carousel.min.js",
+                      "~/Scripts/lib/front.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/css/font-awesome.css",
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/css/animate.min.css",
+                      "~/Content/css/owl.carousel.css",
+                      "~/Content/css/owl.theme.css",
+                      "~/Content/css/style.default.css",
                       "~/Content/site.css"));
         }
     }
