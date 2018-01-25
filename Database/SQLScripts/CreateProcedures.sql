@@ -7,7 +7,9 @@ CREATE PROCEDURE usp_FetchProductGroupCategories
 AS
 BEGIN
 
-SELECT prod.*,prodcat.ProductCategoryName,prodcat.ProductCategoryDesc, prodgrp.ProductGroupName, prodgrp.ProductGroupDesc 
+SELECT prod.ProductID,prod.ProductName, prod.ProductDesc, 
+	   prodcat.ProductCategoryID,prodcat.ProductCategoryName,prodcat.ProductCategoryDesc, 
+	   prodgrp.ProductGroupID, prodgrp.ProductGroupName, prodgrp.ProductGroupDesc 
 	FROM tblProduct AS prod 
 	FULL OUTER JOIN tblproductcategory AS prodcat ON prod.productcategoryid = prodcat.productcategoryid 
 	FULL OUTER JOIN tblproductgroup AS prodgrp ON prodgrp.productgroupid = prodcat.productgroupid
