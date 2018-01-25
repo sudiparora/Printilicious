@@ -56,9 +56,9 @@ namespace Printly.DataAccess.Base
             return entity;
         }
 
-        protected IList<T> GetEntities<T>(ref SqlCommand command) where T : EntityBase
+        protected List<T> GetEntities<T>(ref SqlCommand command) where T : EntityBase
         {
-            IList<T> entities = new List<T>();
+            List<T> entities = new List<T>();
             try
             {
                 command.Connection.Open();

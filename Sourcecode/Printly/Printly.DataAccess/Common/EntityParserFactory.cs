@@ -2,8 +2,12 @@
 using Printly.DataAccess.Interfaces;
 using Printly.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Printly.DataAccess
+namespace Printly.DataAccess.Common
 {
     internal sealed class EntityParserFactory
     {
@@ -12,14 +16,14 @@ namespace Printly.DataAccess
             IEntityParser parser = null;
             switch (entityType.Name)
             {
+                case EntityConstants.PRODUCTCATEGORY:
+                    parser = new ProductCategoryParser();
+                    break;
                 case EntityConstants.PRODUCTGROUP:
                     parser = new ProductGroupParser();
                     break;
                 case EntityConstants.PRODUCT:
                     parser = new ProductParser();
-                    break;
-                case EntityConstants.PRODUCTCATEGORY:
-                    parser = new ProductCategoryParser();
                     break;
             }
             return parser;

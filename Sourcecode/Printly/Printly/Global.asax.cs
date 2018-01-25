@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Printly.App_Start;
+using Printly.Business.BDC;
+using Printly.Shared.Automapper;
+using Printly.Shared.Ioc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +22,10 @@ namespace Printly
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfiguration.Instance.InitializeAutoMapper();
+            UnityConfig.RegisterObjects();
+
+            DependencyFactory.Resolve<ProductBDC>().GetAllProductGroups();
         }
     }
 }
