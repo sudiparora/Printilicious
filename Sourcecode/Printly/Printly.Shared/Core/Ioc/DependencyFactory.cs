@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity;
-using Microsoft.Practices.Unity;
+﻿using Unity;
 
-namespace Printly.Shared.Ioc
+namespace Printly.Shared.Core
 {
     public class DependencyFactory
     {

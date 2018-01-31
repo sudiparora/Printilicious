@@ -8,6 +8,7 @@ namespace Printly.DataAccess.Base
 {
     public abstract class EntityDACBase : DACBase
     {
+
         protected EntityDACBase()
         { }
 

@@ -1,7 +1,8 @@
-﻿using Printly.App_Start;
+﻿using NLog.Common;
+using Printly.App_Start;
 using Printly.Business.BDC;
 using Printly.Shared.Automapper;
-using Printly.Shared.Ioc;
+using Printly.Shared.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ namespace Printly
     {
         protected void Application_Start()
         {
+            string nlogPath = Server.MapPath("nlog-web.log");
+            InternalLogger.LogFile = nlogPath;
+            InternalLogger.LogLevel = NLog.LogLevel.Trace;
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

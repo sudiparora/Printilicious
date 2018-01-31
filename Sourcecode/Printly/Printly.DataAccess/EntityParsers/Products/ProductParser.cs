@@ -3,11 +3,7 @@ using Printly.DataAccess.Interfaces;
 using Printly.Entities;
 using Printly.Entities.Base;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Printly.DataAccess.EntityParsers
 {
