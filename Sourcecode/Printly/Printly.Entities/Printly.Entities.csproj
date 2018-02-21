@@ -42,10 +42,17 @@
   <ItemGroup>
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="EntityConstants.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\UserClaim.cs" />
+    <Compile Include="User\UserLogin.cs" />
+    <Compile Include="User\UserRole.cs" />
     <Compile Include="Product\Product.cs" />
     <Compile Include="Product\ProductCategory.cs" />
     <Compile Include="Product\ProductGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

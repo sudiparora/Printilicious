@@ -26,13 +26,13 @@ namespace Printly.Shared.Core
             return new OperationResult<T> { IsSuccessful = true, Result = result };
         }
 
-        public static OperationResult<T> LogAndReturnFailureResult(Exception ex)
+        public static OperationResult<T> LogAndReturnFailureResult(Exception ex, string message = null)
         {
             LogFactory.Instance.Error(ex);
-            return new OperationResult<T> { IsSuccessful = false, Exception = ex };
+            return new OperationResult<T> { IsSuccessful = false, Exception = ex, ErrorMessage = message };
         }
 
-        public static OperationResult<T> ReturnFailureResult(string message)
+        public static OperationResult<T> ReturnFailureResult(string message = null)
         {
             return new OperationResult<T> { IsSuccessful = false, ErrorMessage = message };
         }

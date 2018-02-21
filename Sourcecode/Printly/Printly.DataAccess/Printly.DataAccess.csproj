@@ -48,8 +48,10 @@
     <Compile Include="Common\EntityParserFactory.cs" />
     <Compile Include="Common\EntityParserHelper.cs" />
     <Compile Include="Constants\DBConstants.cs" />
+    <Compile Include="DAC\UserDAC.cs" />
     <Compile Include="DAC\ProductDAC.cs" />
     <Compile Include="EntityParserFactory.cs" />
+    <Compile Include="EntityParsers\User\UserParser.cs" />
     <Compile Include="EntityParsers\Products\ProductCategoryParser.cs" />
     <Compile Include="EntityParsers\Products\ProductGroupParser.cs" />
     <Compile Include="EntityParsers\Products\ProductParser.cs" />
@@ -66,5 +68,6 @@
       <Name>Printly.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

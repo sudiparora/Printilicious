@@ -44,6 +44,10 @@
     <Compile Include="Product\ProductDTO.cs" />
     <Compile Include="Product\ProductGroupDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\UserDTO.cs" />
+    <Compile Include="User\UserLoginDTO.cs" />
+    <Compile Include="User\UserRoleDTO.cs" />
+    <Compile Include="User\UserClaimDTO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

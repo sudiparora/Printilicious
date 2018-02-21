@@ -21,6 +21,9 @@ namespace Printly.DataAccess
                 case EntityConstants.PRODUCTCATEGORY:
                     parser = new ProductCategoryParser();
                     break;
+                case EntityConstants.USER:
+                    parser = new UserParser();
+                    break;
             }
             return parser;
         }

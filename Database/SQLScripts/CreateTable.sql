@@ -7,6 +7,9 @@ IF OBJECT_ID('tblProductCategory', 'U') IS NOT NULL
 IF OBJECT_ID('tblProductGroup', 'U') IS NOT NULL
     DROP TABLE tblProductGroup;
 
+IF OBJECT_ID('tblUser', 'U') IS NOT NULL
+    DROP TABLE tblUser;
+
 CREATE TABLE tblProductGroup
 (
 	ProductGroupID INT IDENTITY(1,1) NOT NULL,
@@ -39,4 +42,17 @@ CREATE TABLE tblProduct
 	CONSTRAINT FK_tblProduct_ProductCategoryID FOREIGN KEY(ProductCategoryID) REFERENCES tblProductCategory(ProductCategoryID)
 );
 
+GO
+
+CREATE TABLE tblUser
+(
+	UserID INT IDENTITY(1,1) NOT NULL,
+	PasswordHash VARCHAR(MAX),
+	Email VARCHAR(100) UNIQUE,
+	PhoneNumber VARCHAR(15),
+	IsEmailConfirmed BIT,
+	AccessFailedCount INT,
+	LockoutEnabled INT,
+	CONSTRAINT PK_tblUser_UserID PRIMARY KEY CLUSTERED (UserID)
+);
 GO
