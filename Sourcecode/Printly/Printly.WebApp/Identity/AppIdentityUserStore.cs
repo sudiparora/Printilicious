@@ -71,7 +71,7 @@ namespace Printly.WebApp.Identity
 
         public Task<TUser> FindByIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<TUser>(null);
         }
 
         public Task<bool> GetEmailConfirmedAsync(TUser user)

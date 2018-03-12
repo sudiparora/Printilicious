@@ -21,7 +21,7 @@ namespace Printly.DataAccess.EntityParsers
         public EntityBase PopulateEntity(SqlDataReader reader)
         {
             User user = new User();
-            if (!reader.IsDBNull(ord_UserId)) user.Id = reader.GetInt32(ord_UserId);
+            if (!reader.IsDBNull(ord_UserId)) user.Id = reader.GetString(ord_UserId);
             if (!reader.IsDBNull(ord_PasswordHash)) user.PasswordHash = reader.GetString(ord_PasswordHash);
             if (!reader.IsDBNull(ord_Email)) user.Email = reader.GetString(ord_Email);
             if (!reader.IsDBNull(ord_PhoneNumber)) user.PhoneNumber = reader.GetString(ord_PhoneNumber);
