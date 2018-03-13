@@ -11,6 +11,10 @@ IF OBJECT_ID('usp_CreateNewUser', 'P') IS NOT NULL
     DROP PROCEDURE usp_CreateNewUser
 GO
 
+IF OBJECT_ID('usp_FindUserById', 'P') IS NOT NULL
+    DROP PROCEDURE usp_FindUserById
+GO
+
 CREATE PROCEDURE usp_FetchProductGroupCategories
 AS
 BEGIN
@@ -39,31 +43,43 @@ GO
 
 CREATE PROCEDURE usp_CreateNewUser
 (
+	@UserID VARCHAR(MAX),
 	@EmailAddress VARCHAR(200),
 	@PasswordHash VARCHAR(MAX),
 	@IsNewUserCreated BIT OUTPUT
 )
 AS
 BEGIN
-INSERT INTO [dbo].[tblUser]
-           ([PasswordHash]
-           ,[Email])
-     VALUES
-           (@PasswordHash
-		   ,@EmailAddress)
+	IF NOT EXISTS (SELECT 1 FROM tblUser WHERE Email = @EmailAddress)
+	BEGIN
+		INSERT INTO [dbo].[tblUser]
+				   ([UserID]
+				   ,[PasswordHash]
+				   ,[Email])
+			 VALUES
+				   (@UserID
+				   ,@PasswordHash
+				   ,@EmailAddress)
 
-		   
-
-SELECT @IsNewUserCreated = COUNT(1) FROM tblUser WHERE Email = @EmailAddress
-
+		SELECT @IsNewUserCreated = COUNT(1) FROM tblUser WHERE Email = @EmailAddress
+	END
 END
 GO
 
-EXEC usp_FetchProductGroupCategories
+CREATE PROCEDURE usp_FindUserById
+(
+	@UserID VARCHAR(MAX)
+)
+AS
+BEGIN
+	SELECT UserID, PasswordHash, Email, PhoneNumber, IsEmailConfirmed, AccessFailedCount, LockoutEnabled
+	FROM tblUser WHERE UserID = @UserID
+END
+--EXEC usp_FetchProductGroupCategories
 
 
-DECLARE @IsNewUserCreated BIT 
-SELECT @IsNewUserCreated = COUNT(1) FROM tblUser WHERE Email = 'sudip.arora@gmail.com1'
-PRINT @IsNewUserCreated
+--DECLARE @IsNewUserCreated BIT 
+--SELECT @IsNewUserCreated = COUNT(1) FROM tblUser WHERE Email = 'sudip.arora@gmail.com1'
+--PRINT @IsNewUserCreated
 
 

@@ -10,6 +10,7 @@
         internal const string SP_GET_ALL_PRODUCTGROUPS = "usp_FetchProductGroupCategories";
         internal const string SP_FIND_USER_BY_EMAILID = "usp_FindUserByEmailId";
         internal const string SP_CREATE_NEW_USER = "usp_CreateNewUser";
+        internal const string SP_FIND_USER_BY_USERID = "usp_FindUserById";
     }
 
     internal class DBColumnConstants

@@ -13,8 +13,9 @@ namespace Printly.WebApp.Identity
 {
     public class AppIdentityUserStore<TUser> : IUserStore<TUser>,
                                         IUserPasswordStore<TUser>,
-                                        IUserEmailStore<TUser>
-        where TUser : AppIdentityUser
+                                        IUserEmailStore<TUser>, 
+                                        IUserPhoneNumberStore<TUser>
+        where TUser : ApplicationUser
     {
 
         public AppIdentityUserStore(ApplicationDbContext context)
@@ -52,9 +53,27 @@ namespace Printly.WebApp.Identity
 
         public Task CreateAsync(TUser user)
         {
-            UserDTO userDTO = new UserDTO { Email = user.Email, PasswordHash = user.PasswordHash };
+            UserDTO userDTO = new UserDTO { Email = user.Email, PasswordHash = user.PasswordHash, Id = user.Id };
             OperationResult<bool> createNewUserResult = DependencyFactory.Resolve<UserBDC>().CreateNewUser(userDTO);
             return Task.FromResult(0);
+        }
+
+        public Task<string> GetPhoneNumberAsync(TUser user)
+        {
+            return Task.FromResult(user.PhoneNumber);
+        }
+
+        public Task<TUser> FindByIdAsync(string userId)
+        {
+            OperationResult<UserDTO> findUserByIdResult = DependencyFactory.Resolve<UserBDC>().FindUserByUserId(userId);
+            if (findUserByIdResult.IsSuccessful && findUserByIdResult.Result != null)
+            {
+                return Task.FromResult((TUser)new ApplicationUser { Email = findUserByIdResult.Result.Email });
+            }
+            else
+            {
+                return Task.FromResult<TUser>(null);
+            }
         }
 
         #region Not Implemented Methods
@@ -67,11 +86,6 @@ namespace Printly.WebApp.Identity
         public void Dispose()
         {
             //throw new NotImplementedException();
-        }
-
-        public Task<TUser> FindByIdAsync(string userId)
-        {
-            return Task.FromResult<TUser>(null);
         }
 
         public Task<bool> GetEmailConfirmedAsync(TUser user)
@@ -99,12 +113,29 @@ namespace Printly.WebApp.Identity
             throw new NotImplementedException();
         }
 
-
-
         public Task UpdateAsync(TUser user)
         {
             throw new NotImplementedException();
         }
+
+        #region IUserPhoneNumberStore Implementation
+
+        public Task SetPhoneNumberAsync(TUser user, string phoneNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> GetPhoneNumberConfirmedAsync(TUser user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetPhoneNumberConfirmedAsync(TUser user, bool confirmed)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
         #endregion
     }

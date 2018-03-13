@@ -25,11 +25,27 @@ namespace Printly.DataAccess.DAC
             }
         }
 
+        public OperationResult<User> FindUserByUserId(string userId)
+        {
+            try
+            {
+                SqlCommand command = GetDbSprocCommand(SPConstants.SP_FIND_USER_BY_USERID);
+                command.Parameters.Add(CreateParameter("@UserID", userId));
+                User user = GetSingleEntity<User>(ref command);
+                return OperationResult<User>.ReturnSuccessResult(user);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<User>.LogAndReturnFailureResult(ex);
+            }
+        }
+
         public OperationResult<bool> CreateNewUser(User user)
         {
             try
             {
                 SqlCommand command = GetDbSprocCommand(SPConstants.SP_CREATE_NEW_USER);
+                command.Parameters.Add(CreateParameter("@UserId", user.Id));
                 command.Parameters.Add(CreateParameter("@EmailAddress", user.Email));
                 command.Parameters.Add(CreateParameter("@PasswordHash", user.PasswordHash));
                 command.Parameters.Add(CreateOutputParameter("@IsNewUserCreated", SqlDbType.Bit));

@@ -30,6 +30,26 @@ namespace Printly.Business.BDC
             }
         }
 
+        public OperationResult<UserDTO> FindUserByUserId(string userId)
+        {
+            try
+            {
+                OperationResult<User> userResult = DependencyFactory.Resolve<UserDAC>().FindUserByUserId(userId);
+                if (userResult.IsSuccessful)
+                {
+                    return OperationResult<UserDTO>.ReturnSuccessResult(Mapper.Map<User, UserDTO>(userResult.Result));
+                }
+                else
+                {
+                    return OperationResult<UserDTO>.ReturnFailureResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<UserDTO>.LogAndReturnFailureResult(ex);
+            }
+        }
+
         public OperationResult<bool> CreateNewUser(UserDTO userDTO)
         {
             try
