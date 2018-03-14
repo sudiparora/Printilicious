@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\DTOBase.cs" />
+    <Compile Include="Cart\CartDTO.cs" />
+    <Compile Include="Cart\CartItemDTO.cs" />
     <Compile Include="Product\ProductCategoryDTO.cs" />
     <Compile Include="Product\ProductDTO.cs" />
     <Compile Include="Product\ProductGroupDTO.cs" />

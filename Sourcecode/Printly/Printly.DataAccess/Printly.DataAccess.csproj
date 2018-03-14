@@ -48,9 +48,12 @@
     <Compile Include="Common\EntityParserFactory.cs" />
     <Compile Include="Common\EntityParserHelper.cs" />
     <Compile Include="Constants\DBConstants.cs" />
+    <Compile Include="DAC\CartDAC.cs" />
     <Compile Include="DAC\UserDAC.cs" />
     <Compile Include="DAC\ProductDAC.cs" />
     <Compile Include="EntityParserFactory.cs" />
+    <Compile Include="EntityParsers\Cart\CartItemParser.cs" />
+    <Compile Include="EntityParsers\Cart\CartParser.cs" />
     <Compile Include="EntityParsers\User\UserParser.cs" />
     <Compile Include="EntityParsers\Products\ProductCategoryParser.cs" />
     <Compile Include="EntityParsers\Products\ProductGroupParser.cs" />

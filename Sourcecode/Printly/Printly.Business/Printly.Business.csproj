@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\EntityBDCBase.cs" />
+    <Compile Include="BDC\CartBDC.cs" />
     <Compile Include="BDC\ProductBDC.cs" />
     <Compile Include="BDC\UserBDC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
