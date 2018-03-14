@@ -68,9 +68,9 @@ namespace Printly.WebApp.Controllers
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                TwoFactor = false,
+                //Logins = await UserManager.GetLoginsAsync(userId),
+                BrowserRemembered = false
             };
             return View(model);
         }

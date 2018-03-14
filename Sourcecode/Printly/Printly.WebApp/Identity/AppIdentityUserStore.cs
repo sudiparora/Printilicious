@@ -68,7 +68,7 @@ namespace Printly.WebApp.Identity
             OperationResult<UserDTO> findUserByIdResult = DependencyFactory.Resolve<UserBDC>().FindUserByUserId(userId);
             if (findUserByIdResult.IsSuccessful && findUserByIdResult.Result != null)
             {
-                return Task.FromResult((TUser)new ApplicationUser { Email = findUserByIdResult.Result.Email });
+                return Task.FromResult((TUser)new ApplicationUser { Email = findUserByIdResult.Result.Email, PasswordHash = findUserByIdResult.Result.PasswordHash });
             }
             else
             {
