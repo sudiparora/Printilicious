@@ -11,6 +11,9 @@
         internal const string SP_FIND_USER_BY_EMAILID = "usp_FindUserByEmailId";
         internal const string SP_CREATE_NEW_USER = "usp_CreateNewUser";
         internal const string SP_FIND_USER_BY_USERID = "usp_FindUserById";
+        internal const string SP_ADD_ITEM_TO_CART = "usp_AddItemToCart";
+        internal const string SP_REMOVE_ITEM_FROM_CART = "usp_RemoveItemFromCart";
+        internal const string SP_EMPTY_CART = "usp_EmptyCart";
     }
 
     internal class DBColumnConstants
@@ -33,6 +36,10 @@
         internal const string ACCESSFAILEDCOUNT = "AccessFailedCount";
         internal const string LOCKOUTENABLED = "LockoutEnabled";
 
+        internal const string CARTID = "CartID";
+        internal const string ITEMCOUNT = "ItemCount";
+        internal const string CARTTOTAL = "CartTotal";
 
+        internal const string QUANTITY = "QUANTITY";
     }
 }

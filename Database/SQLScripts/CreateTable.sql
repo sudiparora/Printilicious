@@ -1,3 +1,9 @@
+IF OBJECT_ID('tblCartItem', 'U') IS NOT NULL
+    DROP TABLE tblCartItem;
+
+IF OBJECT_ID('tblCart', 'U') IS NOT NULL
+    DROP TABLE tblCart;
+
 IF OBJECT_ID('tblProduct', 'U') IS NOT NULL
 	DROP TABLE tblProduct;
 
@@ -55,5 +61,27 @@ CREATE TABLE tblUser
 	AccessFailedCount INT,
 	LockoutEnabled INT,
 	CONSTRAINT PK_tblUser_ID PRIMARY KEY CLUSTERED (ID)
+);
+GO
+
+CREATE TABLE tblCart
+(
+	ID INT IDENTITY(1,1) NOT NULL,
+	CartID VARCHAR(MAX),
+	UserID INT NULL,
+	ItemCount INT,
+	CartTotal DECIMAL,
+	CONSTRAINT PK_tblCart_ID PRIMARY KEY CLUSTERED (ID),
+	CONSTRAINT FK_tblCart_UserID FOREIGN KEY(UserID) REFERENCES tblUser(ID)
+);
+GO
+
+CREATE TABLE tblCartItem
+(
+	CartID INT NOT NULL,
+	ProductID INT,
+	Quantity INT NOT NULL,
+	CONSTRAINT FK_tblCartItem_CartID FOREIGN KEY(CartID) REFERENCES tblCart(ID),
+	CONSTRAINT FK_tblCartItem_ProductID FOREIGN KEY(ProductID) REFERENCES tblProduct(ProductID)
 );
 GO

@@ -9,5 +9,7 @@
         public const string USERCLAIM = "UserClaim";
         public const string USERROLE = "UserRole";
         public const string USERLOGIN = "UserLogin";
+        public const string CART = "Cart";
+        public const string CARTITEM = "CartItem";
     }
 }
