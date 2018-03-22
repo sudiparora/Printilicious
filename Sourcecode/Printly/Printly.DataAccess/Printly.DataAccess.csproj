@@ -56,7 +56,6 @@
     <Compile Include="EntityParsers\Cart\CartParser.cs" />
     <Compile Include="EntityParsers\User\UserParser.cs" />
     <Compile Include="EntityParsers\Products\ProductCategoryParser.cs" />
-    <Compile Include="EntityParsers\Products\ProductGroupParser.cs" />
     <Compile Include="EntityParsers\Products\ProductParser.cs" />
     <Compile Include="Interfaces\IEntityParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

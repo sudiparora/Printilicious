@@ -1,6 +1,6 @@
 
-IF OBJECT_ID('usp_FetchProductGroupCategories', 'P') IS NOT NULL
-    DROP PROCEDURE usp_FetchProductGroupCategories
+IF OBJECT_ID('usp_FetchProductCategories', 'P') IS NOT NULL
+    DROP PROCEDURE usp_FetchProductCategories
 GO
 
 IF OBJECT_ID('usp_FindUserByEmailId', 'P') IS NOT NULL
@@ -27,21 +27,45 @@ IF OBJECT_ID('usp_EmptyCart', 'P') IS NOT NULL
     DROP PROCEDURE usp_EmptyCart
 GO
 
-CREATE PROCEDURE usp_FetchProductGroupCategories
+--CREATE PROCEDURE usp_FetchProductGroupCategories
+--AS
+--BEGIN
+
+--SELECT prod.ProductID,prod.ProductName, prod.ProductDesc, 
+--	   prodcat.ProductCategoryID,prodcat.ProductCategoryName,prodcat.ProductCategoryDesc, 
+--	   prodgrp.ProductGroupID, prodgrp.ProductGroupName, prodgrp.ProductGroupDesc 
+--	FROM tblProduct AS prod 
+--	FULL OUTER JOIN tblproductcategory AS prodcat ON prod.productcategoryid = prodcat.productcategoryid 
+--	FULL OUTER JOIN tblproductgroup AS prodgrp ON prodgrp.productgroupid = prodcat.productgroupid
+--	ORDER BY prodgrp.ProductGroupName
+
+--END
+
+--GO
+
+CREATE PROCEDURE usp_FetchProductCategories
 AS
 BEGIN
-
-SELECT prod.ProductID,prod.ProductName, prod.ProductDesc, 
-	   prodcat.ProductCategoryID,prodcat.ProductCategoryName,prodcat.ProductCategoryDesc, 
-	   prodgrp.ProductGroupID, prodgrp.ProductGroupName, prodgrp.ProductGroupDesc 
-	FROM tblProduct AS prod 
-	FULL OUTER JOIN tblproductcategory AS prodcat ON prod.productcategoryid = prodcat.productcategoryid 
-	FULL OUTER JOIN tblproductgroup AS prodgrp ON prodgrp.productgroupid = prodcat.productgroupid
-	ORDER BY prodgrp.ProductGroupName
+WITH Hierarchy(ProductCategoryID, ProductCategoryName, ProductCategoryParentId, ProductCategoryParents)
+AS
+(
+    SELECT ProductCategoryID, ProductCategoryName, ProductCategoryParentId, CAST('' AS VARCHAR(MAX))
+        FROM tblProductCategory AS FirtGeneration
+        WHERE ProductCategoryParentId IS NULL    
+    UNION ALL
+    SELECT NextGeneration.ProductCategoryID, NextGeneration.ProductCategoryName, Parent.ProductCategoryID,
+    CAST(CASE WHEN Parent.ProductCategoryParents = ''
+        THEN(CAST(NextGeneration.ProductCategoryParentId AS VARCHAR(MAX)))
+        ELSE(Parent.ProductCategoryParents + '.' + CAST(NextGeneration.ProductCategoryParentId AS VARCHAR(MAX)))
+    END AS VARCHAR(MAX))
+        FROM tblProductCategory AS NextGeneration
+        INNER JOIN Hierarchy AS Parent ON NextGeneration.ProductCategoryParentId = Parent.ProductCategoryID 
+)
+SELECT * FROM Hierarchy
 
 END
-
 GO
+
 
 CREATE PROCEDURE usp_FindUserByEmailId
 (
@@ -147,12 +171,19 @@ GO
 
 CREATE PROCEDURE usp_EmptyCart
 (
-	@CartID VARCHAR(MAX)
+	@CartID VARCHAR(MAX),
+	@DoesCartExist BIT OUTPUT
 )
 AS
 BEGIN
 	DELETE FROM tblCartItem WHERE CartID = @CartID
 	DELETE FROM tblCart WHERE CartID = @CartID
+
+	-- Checking Deletion Status
+	IF EXISTS(SELECT 1 FROM tblCart WHERE CartID = @CartID)
+		SET @DoesCartExist = 0
+	ELSE
+		SET @DoesCartExist = 1
 END
 GO
 --EXEC usp_FetchProductGroupCategories

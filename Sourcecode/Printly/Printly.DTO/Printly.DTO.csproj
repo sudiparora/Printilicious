@@ -44,7 +44,6 @@
     <Compile Include="Cart\CartItemDTO.cs" />
     <Compile Include="Product\ProductCategoryDTO.cs" />
     <Compile Include="Product\ProductDTO.cs" />
-    <Compile Include="Product\ProductGroupDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\UserDTO.cs" />
     <Compile Include="User\UserLoginDTO.cs" />

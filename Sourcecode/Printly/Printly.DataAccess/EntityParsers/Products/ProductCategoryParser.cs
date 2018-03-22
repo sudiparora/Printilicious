@@ -12,15 +12,19 @@ namespace Printly.DataAccess.EntityParsers
     {
         private int ord_ProductCategoryId;
         private int ord_ProductCategoryName;
-        private int ord_ProductCategoryDesc;
+        private int ord_ProductCategoryCode;
+        private int ord_ProductCategoryParentId;
+        private int ord_ProductCategoryParents;
 
         public EntityBase PopulateEntity(SqlDataReader reader)
         {
             ProductCategory productCategory = new ProductCategory();
             if (!reader.IsDBNull(ord_ProductCategoryId)) productCategory.ProductCategoryID = reader.GetInt32(ord_ProductCategoryId);
             if (!reader.IsDBNull(ord_ProductCategoryName)) productCategory.ProductCategoryName = reader.GetString(ord_ProductCategoryName);
-            if (!reader.IsDBNull(ord_ProductCategoryDesc)) productCategory.ProductCategoryDesc = reader.GetString(ord_ProductCategoryDesc);
-            productCategory.ChildProduct = (Product)EntityParserHelper.PopulateEntity<Product>(reader);
+            //if (!reader.IsDBNull(ord_ProductCategoryCode)) productCategory.ProductCategoryCode = reader.GetString(ord_ProductCategoryCode);
+            if (!reader.IsDBNull(ord_ProductCategoryParentId)) productCategory.ProductCategoryParentID = reader.GetInt32(ord_ProductCategoryParentId);
+            if (!reader.IsDBNull(ord_ProductCategoryParents)) productCategory.ProductCategoryParents = reader.GetString(ord_ProductCategoryParents);
+            //productCategory.ChildProduct = (Product)EntityParserHelper.PopulateEntity<Product>(reader);
             return productCategory;
         }
 
@@ -28,7 +32,9 @@ namespace Printly.DataAccess.EntityParsers
         {
             ord_ProductCategoryId = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYID);
             ord_ProductCategoryName = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYNAME);
-            ord_ProductCategoryDesc = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYDESC);
+            //ord_ProductCategoryCode = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYCODE);
+            ord_ProductCategoryParentId = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYPARENTID);
+            ord_ProductCategoryParents = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYPARENTS);
         }
 
         public SqlParameter[] PopulateParameters(EntityBase entity)

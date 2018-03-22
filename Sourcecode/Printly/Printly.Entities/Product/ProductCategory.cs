@@ -6,7 +6,8 @@ namespace Printly.Entities
     {
         public int ProductCategoryID { get; set; }
         public string ProductCategoryName { get; set; }
-        public string ProductCategoryDesc { get; set; }
-        public Product ChildProduct { get; set; }
+        public string ProductCategoryCode { get; set; }
+        public int? ProductCategoryParentID { get; set; }
+        public string ProductCategoryParents { get; set; }
     }
 }

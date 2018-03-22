@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@model Printly.WebApp.Models.MenuViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    
     <script src="~/Scripts/lib/respond.min.js"></script>
 </head>
 <body>
@@ -30,7 +33,7 @@
                         <a href="#">Recently viewed</a>
                     </li>
                 </ul>*@
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
@@ -45,6 +48,62 @@
                     <span class="sr-only">Printilicious - go to homepage</span>
                 </a>
             </div>
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-left">
+                    @*<li class="active">
+                        <a href="index.html">Home</a>
+                    </li>*@
+                    @foreach (var category in Model.ProductCategories)
+                    {
+                        <li class="dropdown yamm-fw">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">@category.ProductCategoryName <b class="caret"></b></a>
+                            @if(!@category.ChildProductCategories.Count != 0)
+                            {
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="row">
+                                                @{ int childCategoriesCount = category.ChildProductCategories.Count;
+                                                    string className = string.Empty;
+                                                    switch (childCategoriesCount)
+                                                    {
+                                                        case 2:
+                                                            className = "col-sm-6";
+                                                            break;
+                                                        case 3:
+                                                            className = "col-sm-4";
+                                                            break;
+                                                        case 4:
+                                                            className = "col-sm-3";
+                                                            break;
+                                                        case 5:
+                                                        case 6:
+                                                            className = "col-sm-2";
+                                                            break;
+                                                    }
+                                                }
+
+                                                @foreach (var childCategory in category.ChildProductCategories)
+                                                {
+                                                    <div class="@className">
+                                                        <h5>@childCategory.ProductCategoryName</h5>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+
         </div>
     </div>
     <!-- *** NAVBAR END *** -->

@@ -29,8 +29,7 @@ namespace Printly.WebApp
 
             AutoMapperConfiguration.Instance.InitializeAutoMapper();
             UnityConfig.RegisterObjects();
-
-            DependencyFactory.Resolve<ProductBDC>().GetAllProductGroups();
+            CacheConfig.Instance.InitializeCache();
         }
     }
 }

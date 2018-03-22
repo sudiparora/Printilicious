@@ -11,7 +11,6 @@ namespace Printly.Shared.Automapper
         public DTOToEntityMapper()
         {
             CreateMap<ProductDTO, Product>().ReverseMap();
-            CreateMap<ProductGroupDTO, ProductGroup>().ReverseMap();
             CreateMap<ProductCategoryDTO, ProductCategory>().ReverseMap();
 
             CreateMap<UserDTO, User>().ReverseMap();

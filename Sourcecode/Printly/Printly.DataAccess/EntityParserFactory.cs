@@ -12,9 +12,9 @@ namespace Printly.DataAccess
             IEntityParser parser = null;
             switch (entityType.Name)
             {
-                case EntityConstants.PRODUCTGROUP:
-                    parser = new ProductGroupParser();
-                    break;
+                //case EntityConstants.PRODUCTGROUP:
+                //    parser = new ProductGroupParser();
+                //    break;
                 case EntityConstants.PRODUCT:
                     parser = new ProductParser();
                     break;

@@ -16,21 +16,36 @@ namespace Printly.DataAccess.DAC
         /// Method to return all the product groups alongwith product categories and the associated products.
         /// </summary>
         /// <returns></returns>
-        public OperationResult<List<ProductGroup>> GetAllProductGroups()
+        //public OperationResult<List<ProductGroup>> GetAllProductGroups()
+        //{
+        //    try
+        //    {
+        //        List<ProductGroup> productGroups = new List<ProductGroup>();
+        //        SqlCommand command = GetDbSprocCommand(SPConstants.SP_GET_ALL_PRODUCTGROUPS);
+        //        productGroups = GetEntities<ProductGroup>(ref command);
+        //        int i = 5;
+        //        int r = 0;
+        //        int k = i / r;
+        //        return OperationResult<List<ProductGroup>>.ReturnSuccessResult(productGroups);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return OperationResult<List<ProductGroup>>.LogAndReturnFailureResult(ex);
+        //    }
+        //}
+
+        public OperationResult<List<ProductCategory>> GetAllProductCategories()
         {
             try
             {
-                List<ProductGroup> productGroups = new List<ProductGroup>();
-                SqlCommand command = GetDbSprocCommand(SPConstants.SP_GET_ALL_PRODUCTGROUPS);
-                productGroups = GetEntities<ProductGroup>(ref command);
-                int i = 5;
-                int r = 0;
-                int k = i / r;
-                return OperationResult<List<ProductGroup>>.ReturnSuccessResult(productGroups);
+                List<ProductCategory> productGroups = new List<ProductCategory>();
+                SqlCommand command = GetDbSprocCommand(SPConstants.SP_GET_ALL_PRODUCTCATEGORIES);
+                productGroups = GetEntities<ProductCategory>(ref command);
+                return OperationResult<List<ProductCategory>>.ReturnSuccessResult(productGroups);
             }
             catch (Exception ex)
             {
-                return OperationResult<List<ProductGroup>>.LogAndReturnFailureResult(ex);
+                return OperationResult<List<ProductCategory>>.LogAndReturnFailureResult(ex);
             }
         }
     }

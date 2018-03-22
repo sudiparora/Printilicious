@@ -6,12 +6,8 @@ using System.Web.Mvc;
 
 namespace Printly.WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MenuController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult About()
         {

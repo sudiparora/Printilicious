@@ -15,9 +15,9 @@ namespace Printly.DataAccess.Common
                 case EntityConstants.PRODUCTCATEGORY:
                     parser = new ProductCategoryParser();
                     break;
-                case EntityConstants.PRODUCTGROUP:
-                    parser = new ProductGroupParser();
-                    break;
+                //case EntityConstants.PRODUCTGROUP:
+                //    parser = new ProductGroupParser();
+                //    break;
                 case EntityConstants.PRODUCT:
                     parser = new ProductParser();
                     break;

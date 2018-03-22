@@ -34,5 +34,16 @@ namespace Printly.Business.BDC
             }
         }
 
+        public OperationResult<bool> EmptyCart(string cartId)
+        {
+            try
+            {
+                return DependencyFactory.Resolve<CartDAC>().EmptyCart(cartId);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<bool>.LogAndReturnFailureResult(ex);
+            }
+        }
     }
 }

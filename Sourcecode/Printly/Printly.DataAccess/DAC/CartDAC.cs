@@ -44,5 +44,19 @@ namespace Printly.DataAccess.DAC
             }
         }
 
+        public OperationResult<bool> EmptyCart(string cartId)
+        {
+            try
+            {
+                SqlCommand command = GetDbSprocCommand(SPConstants.SP_EMPTY_CART);
+                command.Parameters.Add(CreateParameter("@CartID", cartId));
+                command.Parameters.Add(CreateOutputParameter("@DoesCartExist", SqlDbType.Bit));
+                return OperationResult<bool>.ReturnSuccessResult(GetBoolResults(ref command, "@DoesCartExist"));
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<bool>.LogAndReturnFailureResult(ex);
+            }
+        }
     }
 }

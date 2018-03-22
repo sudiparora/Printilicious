@@ -50,7 +50,6 @@
     <Compile Include="User\UserRole.cs" />
     <Compile Include="Product\Product.cs" />
     <Compile Include="Product\ProductCategory.cs" />
-    <Compile Include="Product\ProductGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
