@@ -7,5 +7,6 @@ namespace Printly.Entities
         public int ProductID { get; set; }
         public string ProductName { get; set; }
         public string ProductDesc { get; set; }
+        public string ProductCode { get; set; }
     }
 }

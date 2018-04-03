@@ -7,6 +7,7 @@
 
     internal class SPConstants
     {
+        internal const string SP_GET_PRODUCTS_FOR_CATEGORY = "usp_GetProductsForCategory";
         internal const string SP_GET_ALL_PRODUCTCATEGORIES = "usp_FetchProductCategories";
         internal const string SP_GET_ALL_PRODUCTGROUPS = "usp_FetchProductGroupCategories";
         internal const string SP_FIND_USER_BY_EMAILID = "usp_FindUserByEmailId";
@@ -22,6 +23,7 @@
         internal const string PRODUCTID = "ProductID";
         internal const string PRODUCTNAME = "ProductName";
         internal const string PRODUCTDESC = "ProductDesc";
+        internal const string PRODUCTCODE = "ProductCode";
         //internal const string PRODUCTGROUPID = "ProductGroupID";
         //internal const string PRODUCTGROUPNAME = "ProductGroupName";
         //internal const string PRODUCTGROUPDESC = "ProductGroupDesc";

@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Printly.Business.BDC
 {
-    public class ProductBDC: EntityBDCBase
+    public class ProductBDC : EntityBDCBase
     {
         //public List<ProductGroupDTO> GetAllProductGroups()
         //{
@@ -115,11 +115,31 @@ namespace Printly.Business.BDC
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 allProductCategoryDTOs = null;
             }
             return allProductCategoryDTOs;
+        }
+
+        public List<ProductDTO> GetAllProductsForCategory(string categoryCode)
+        {
+            List<ProductDTO> allProductDTOs = new List<ProductDTO>();
+            try
+            {
+                OperationResult<List<Product>> allProducts = DependencyFactory.Resolve<ProductDAC>().GetAllProductsForCategory(categoryCode);
+                if (allProducts.IsSuccessful)
+                {
+                    allProductDTOs = Mapper.Map<List<Product>, List<ProductDTO>>(allProducts.Result);
+                }
+                else
+                { }
+            }
+            catch (Exception ex)
+            {
+                allProductDTOs = null;
+            }
+            return allProductDTOs;
         }
     }
 }

@@ -13,9 +13,6 @@ IF OBJECT_ID('tblProductCategory', 'U') IS NOT NULL
 --IF OBJECT_ID('tblProductGroup', 'U') IS NOT NULL
 --    DROP TABLE tblProductGroup;
 
-IF OBJECT_ID('tblUser', 'U') IS NOT NULL
-    DROP TABLE tblUser;
-
 --CREATE TABLE tblProductGroup
 --(
 --	ProductGroupID INT IDENTITY(1,1) NOT NULL,
@@ -39,6 +36,7 @@ GO
 CREATE TABLE tblProduct
 (
 	ProductID INT IDENTITY(1,1) NOT NULL,
+	ProductCode VARCHAR(100) UNIQUE NOT NULL,
 	ProductCategoryID INT,
 	ProductName VARCHAR(50),
     ProductDesc VARCHAR(100),
@@ -48,25 +46,11 @@ CREATE TABLE tblProduct
 
 GO
 
-CREATE TABLE tblUser
-(
-	ID INT IDENTITY(1,1) NOT NULL,
-	UserID VARCHAR(MAX),
-	PasswordHash VARCHAR(MAX),
-	Email VARCHAR(100) UNIQUE,
-	PhoneNumber VARCHAR(15),
-	IsEmailConfirmed BIT,
-	AccessFailedCount INT,
-	LockoutEnabled INT,
-	CONSTRAINT PK_tblUser_ID PRIMARY KEY CLUSTERED (ID)
-);
-GO
-
 CREATE TABLE tblCart
 (
 	ID INT IDENTITY(1,1) NOT NULL,
 	CartID VARCHAR(MAX),
-	UserID INT NULL,
+	UserID NVARCHAR(128) NULL,
 	ItemCount INT,
 	CartTotal DECIMAL,
 	CONSTRAINT PK_tblCart_ID PRIMARY KEY CLUSTERED (ID),

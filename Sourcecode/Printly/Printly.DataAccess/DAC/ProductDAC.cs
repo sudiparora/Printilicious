@@ -6,6 +6,7 @@ using Printly.Shared.Core;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Printly.DataAccess.DAC
 {
@@ -40,12 +41,28 @@ namespace Printly.DataAccess.DAC
             {
                 List<ProductCategory> productGroups = new List<ProductCategory>();
                 SqlCommand command = GetDbSprocCommand(SPConstants.SP_GET_ALL_PRODUCTCATEGORIES);
-                productGroups = GetEntities<ProductCategory>(ref command);
+                productGroups = GetEntities<ProductCategory>(ref command).OrderBy(x => x.ProductCategoryID).ToList();
                 return OperationResult<List<ProductCategory>>.ReturnSuccessResult(productGroups);
             }
             catch (Exception ex)
             {
                 return OperationResult<List<ProductCategory>>.LogAndReturnFailureResult(ex);
+            }
+        }
+
+        public OperationResult<List<Product>> GetAllProductsForCategory(string categoryCode)
+        {
+            try
+            {
+                List<Product> categoryProducts = new List<Product>();
+                SqlCommand command = GetDbSprocCommand(SPConstants.SP_GET_PRODUCTS_FOR_CATEGORY);
+                command.Parameters.Add(CreateParameter("@CategoryCode", categoryCode));
+                categoryProducts = GetEntities<Product>(ref command);
+                return OperationResult<List<Product>>.ReturnSuccessResult(categoryProducts);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<List<Product>>.LogAndReturnFailureResult(ex);
             }
         }
     }

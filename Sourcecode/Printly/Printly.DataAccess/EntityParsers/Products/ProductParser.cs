@@ -12,6 +12,7 @@ namespace Printly.DataAccess.EntityParsers
         private int ord_ProductId;
         private int ord_ProductName;
         private int ord_ProductDesc;
+        private int ord_ProductCode;
 
         public EntityBase PopulateEntity(SqlDataReader reader)
         {
@@ -19,6 +20,7 @@ namespace Printly.DataAccess.EntityParsers
             if (!reader.IsDBNull(ord_ProductId)) product.ProductID = reader.GetInt32(ord_ProductId);
             if (!reader.IsDBNull(ord_ProductName)) product.ProductName = reader.GetString(ord_ProductName);
             if (!reader.IsDBNull(ord_ProductDesc)) product.ProductDesc = reader.GetString(ord_ProductDesc);
+            if (!reader.IsDBNull(ord_ProductCode)) product.ProductCode = reader.GetString(ord_ProductCode);
             return product;
         }
 
@@ -27,6 +29,7 @@ namespace Printly.DataAccess.EntityParsers
             ord_ProductId = reader.GetOrdinal(DBColumnConstants.PRODUCTID);
             ord_ProductName = reader.GetOrdinal(DBColumnConstants.PRODUCTNAME);
             ord_ProductDesc = reader.GetOrdinal(DBColumnConstants.PRODUCTDESC);
+            ord_ProductCode = reader.GetOrdinal(DBColumnConstants.PRODUCTCODE);
         }
 
         public SqlParameter[] PopulateParameters(EntityBase entity)

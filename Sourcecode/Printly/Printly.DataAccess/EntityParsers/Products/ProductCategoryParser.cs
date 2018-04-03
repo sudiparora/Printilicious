@@ -21,7 +21,7 @@ namespace Printly.DataAccess.EntityParsers
             ProductCategory productCategory = new ProductCategory();
             if (!reader.IsDBNull(ord_ProductCategoryId)) productCategory.ProductCategoryID = reader.GetInt32(ord_ProductCategoryId);
             if (!reader.IsDBNull(ord_ProductCategoryName)) productCategory.ProductCategoryName = reader.GetString(ord_ProductCategoryName);
-            //if (!reader.IsDBNull(ord_ProductCategoryCode)) productCategory.ProductCategoryCode = reader.GetString(ord_ProductCategoryCode);
+            if (!reader.IsDBNull(ord_ProductCategoryCode)) productCategory.ProductCategoryCode = reader.GetString(ord_ProductCategoryCode);
             if (!reader.IsDBNull(ord_ProductCategoryParentId)) productCategory.ProductCategoryParentID = reader.GetInt32(ord_ProductCategoryParentId);
             if (!reader.IsDBNull(ord_ProductCategoryParents)) productCategory.ProductCategoryParents = reader.GetString(ord_ProductCategoryParents);
             //productCategory.ChildProduct = (Product)EntityParserHelper.PopulateEntity<Product>(reader);
@@ -32,7 +32,7 @@ namespace Printly.DataAccess.EntityParsers
         {
             ord_ProductCategoryId = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYID);
             ord_ProductCategoryName = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYNAME);
-            //ord_ProductCategoryCode = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYCODE);
+            ord_ProductCategoryCode = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYCODE);
             ord_ProductCategoryParentId = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYPARENTID);
             ord_ProductCategoryParents = reader.GetOrdinal(DBColumnConstants.PRODUCTCATEGORYPARENTS);
         }

@@ -1,0 +1,50 @@
+﻿@model Printilicious.Models.Product.ProductCategoryViewModel
+@{
+    ViewBag.Title = "Product Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="box">
+        <h1>@Model.CategoryCode</h1>
+        <p>Product Category Description</p>
+    </div>
+    <div class="row products">
+        @foreach (var product in Model.Products)
+        {
+            string productCode = @product.ProductCode;
+            string imagePath = string.Format("/Content/images/products/bookmarks/{0}.png", productCode);
+
+            <div class="col-md-3 col-sm-6">
+                <div class="product">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <a href="ProductDetail.html">
+                                    <img src="@imagePath" alt="" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="back">
+                                <a href="ProductDetail.html">
+                                    <img src="/Content/images/products/bookmarks/pp_st_bm_11.png" alt="" class="img-responsive">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="ProductDetail.html" class="invisible">
+                        <img src="@imagePath" alt="" class="img-responsive">
+                    </a>
+                    <div class="text">
+                        <h3><a href="detail.html">Bookmark Name</a></h3>
+                        <p class="price">$143.00</p>
+                        <p class="buttons">
+                            <a href="detail.html" class="btn btn-default">View detail</a>
+                            <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

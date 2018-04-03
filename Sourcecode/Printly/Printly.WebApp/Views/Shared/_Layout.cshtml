@@ -43,7 +43,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
-                    <img width="300px" height="75px" src="~/Content/images/logo.png" alt="Printilicious logo" class="hidden-xs">
+                    <img height="50px" src="~/Content/images/logo.png" alt="Printilicious logo" class="hidden-xs">
                     <img src="~/Content/images/logo.png" alt="Printilicious logo" class="visible-xs">
                     <span class="sr-only">Printilicious - go to homepage</span>
                 </a>
@@ -58,7 +58,7 @@
                     {
                         <li class="dropdown yamm-fw">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">@category.ProductCategoryName <b class="caret"></b></a>
-                            @if(!@category.ChildProductCategories.Count != 0)
+                            @if (@category.ChildProductCategories.Count != 0)
                             {
                                 <ul class="dropdown-menu">
                                     <li>
@@ -83,13 +83,29 @@
                                                             break;
                                                     }
                                                 }
-
+                                                @{var counter = 0;}
+                                                <ul class="catMenuColumn">
                                                 @foreach (var childCategory in category.ChildProductCategories)
                                                 {
-                                                    <div class="@className">
-                                                        <h5>@childCategory.ProductCategoryName</h5>
-                                                    </div>
+                                                    if(counter == 17)
+                                                    {
+                                                        @:</ul><ul class="catMenuColumn">
+                                                        counter = 0;
+                                                    }
+                                                    counter += 2;
+                                                    <h5>@childCategory.ProductCategoryName</h5>
+                                                    foreach (var grandChildCategory in childCategory.ChildProductCategories)
+                                                    {
+                                                        if(counter == 17)
+                                                        {
+                                                            @:</ul><ul class="catMenuColumn">
+                                                            counter = 0;
+                                                        }
+                                                        counter += 1;
+                                                        <li><a href="category.html">@grandChildCategory.ProductCategoryName</a></li>
+                                                    }
                                                 }
+                                                </ul>
                                             </div>
                                         </div>
                                     </li>

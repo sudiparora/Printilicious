@@ -1,3 +1,6 @@
+IF OBJECT_ID('usp_GetProductsForCategory', 'P') IS NOT NULL
+    DROP PROCEDURE usp_GetProductsForCategory
+GO
 
 IF OBJECT_ID('usp_FetchProductCategories', 'P') IS NOT NULL
     DROP PROCEDURE usp_FetchProductCategories
@@ -43,17 +46,29 @@ GO
 
 --GO
 
+CREATE PROCEDURE usp_GetProductsForCategory
+(
+	@CategoryCode VARCHAR(200)
+)
+AS
+BEGIN
+	SELECT Prod.ProductID, Prod.ProductDesc, Prod.ProductName, Prod.ProductCode from tblProduct Prod
+		INNER JOIN tblProductCategory ProdCat ON Prod.ProductCategoryID = ProdCat.ProductCategoryID
+	 WHERE ProdCat.ProductCategoryCode = @CategoryCode;
+END
+GO
+
 CREATE PROCEDURE usp_FetchProductCategories
 AS
 BEGIN
-WITH Hierarchy(ProductCategoryID, ProductCategoryName, ProductCategoryParentId, ProductCategoryParents)
+WITH Hierarchy(ProductCategoryID, ProductCategoryName, ProductCategoryCode, ProductCategoryParentId, ProductCategoryParents)
 AS
 (
-    SELECT ProductCategoryID, ProductCategoryName, ProductCategoryParentId, CAST('' AS VARCHAR(MAX))
+    SELECT ProductCategoryID, ProductCategoryName, ProductCategoryCode, ProductCategoryParentId, CAST('' AS VARCHAR(MAX))
         FROM tblProductCategory AS FirtGeneration
         WHERE ProductCategoryParentId IS NULL    
     UNION ALL
-    SELECT NextGeneration.ProductCategoryID, NextGeneration.ProductCategoryName, Parent.ProductCategoryID,
+    SELECT NextGeneration.ProductCategoryID, NextGeneration.ProductCategoryName, NextGeneration.ProductCategoryCode, Parent.ProductCategoryID,
     CAST(CASE WHEN Parent.ProductCategoryParents = ''
         THEN(CAST(NextGeneration.ProductCategoryParentId AS VARCHAR(MAX)))
         ELSE(Parent.ProductCategoryParents + '.' + CAST(NextGeneration.ProductCategoryParentId AS VARCHAR(MAX)))

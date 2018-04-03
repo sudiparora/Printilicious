@@ -36,6 +36,7 @@ namespace Printly.WebApp
                       "~/Content/css/owl.carousel.css",
                       "~/Content/css/owl.theme.css",
                       "~/Content/css/style.default.css",
+                      "~/Content/css/custom.css",
                       "~/Content/site.css"));
         }
     }
