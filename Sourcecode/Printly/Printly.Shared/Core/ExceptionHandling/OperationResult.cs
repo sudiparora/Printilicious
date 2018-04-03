@@ -28,7 +28,7 @@ namespace Printly.Shared.Core
 
         public static OperationResult<T> LogAndReturnFailureResult(Exception ex, string message = null)
         {
-            LogFactory.Instance.Error(ex);
+            LogFactory.Instance.LogError(message, ex);
             return new OperationResult<T> { IsSuccessful = false, Exception = ex, ErrorMessage = message };
         }
 

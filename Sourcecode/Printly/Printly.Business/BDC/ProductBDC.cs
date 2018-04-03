@@ -79,15 +79,15 @@ namespace Printly.Business.BDC
         //    return allProductGroupDTOs;
         //}
 
-        public List<ProductCategoryDTO> GetAllProductCategories()
+        public OperationResult<List<ProductCategoryDTO>> GetAllProductCategories()
         {
             List<ProductCategoryDTO> allProductCategoryDTOs = new List<ProductCategoryDTO>();
             try
             {
-                OperationResult<List<ProductCategory>> allProductCategories = DependencyFactory.Resolve<ProductDAC>().GetAllProductCategories();
-                if (allProductCategories.IsSuccessful)
+                OperationResult<List<ProductCategory>> allProductCategoriesResult = DependencyFactory.Resolve<ProductDAC>().GetAllProductCategories();
+                if (allProductCategoriesResult.IsSuccessful)
                 {
-                    foreach (ProductCategory productGroup in allProductCategories.Result)
+                    foreach (ProductCategory productGroup in allProductCategoriesResult.Result)
                     {
                         if (productGroup.ProductCategoryParentID == null)
                         {
@@ -113,16 +113,20 @@ namespace Printly.Business.BDC
                             parentProductCategory.ChildProductCategories.Add(Mapper.Map<ProductCategory, ProductCategoryDTO>(productGroup));
                         }
                     }
+                    return OperationResult<List<ProductCategoryDTO>>.ReturnSuccessResult(allProductCategoryDTOs);
+                }
+                else
+                {
+                    return OperationResult<List<ProductCategoryDTO>>.ReturnFailureResult();
                 }
             }
             catch (Exception ex)
             {
-                allProductCategoryDTOs = null;
+                return OperationResult<List<ProductCategoryDTO>>.LogAndReturnFailureResult(ex);
             }
-            return allProductCategoryDTOs;
         }
 
-        public List<ProductDTO> GetAllProductsForCategory(string categoryCode)
+        public OperationResult<List<ProductDTO>> GetAllProductsForCategory(string categoryCode)
         {
             List<ProductDTO> allProductDTOs = new List<ProductDTO>();
             try
@@ -130,19 +134,20 @@ namespace Printly.Business.BDC
                 OperationResult<List<Product>> allProductsResult = DependencyFactory.Resolve<ProductDAC>().GetAllProductsForCategory(categoryCode);
                 if (allProductsResult.IsSuccessful)
                 {
-                    allProductDTOs = Mapper.Map<List<Product>, List<ProductDTO>>(allProductsResult.Result);
+                    return OperationResult<List<ProductDTO>>.ReturnSuccessResult(Mapper.Map<List<Product>, List<ProductDTO>>(allProductsResult.Result));
                 }
                 else
-                { }
+                {
+                    return OperationResult<List<ProductDTO>>.ReturnFailureResult();
+                }
             }
             catch (Exception ex)
             {
-                allProductDTOs = null;
+                return OperationResult<List<ProductDTO>>.LogAndReturnFailureResult(ex);
             }
-            return allProductDTOs;
         }
 
-        public ProductDTO GetProductDetail(string productCode)
+        public OperationResult<ProductDTO> GetProductDetail(string productCode)
         {
             ProductDTO product = new ProductDTO();
             try
@@ -150,16 +155,17 @@ namespace Printly.Business.BDC
                 OperationResult<Product> productResult = DependencyFactory.Resolve<ProductDAC>().GetProductDetails(productCode);
                 if (productResult.IsSuccessful)
                 {
-                    product = Mapper.Map<Product, ProductDTO>(productResult.Result);
+                    return OperationResult<ProductDTO>.ReturnSuccessResult(Mapper.Map<Product, ProductDTO>(productResult.Result));
                 }
                 else
-                { }
+                {
+                    return OperationResult<ProductDTO>.ReturnFailureResult();
+                }
             }
             catch (Exception ex)
             {
-                product = null;
+                return OperationResult<ProductDTO>.LogAndReturnFailureResult(ex);
             }
-            return product;
         }
     }
 }

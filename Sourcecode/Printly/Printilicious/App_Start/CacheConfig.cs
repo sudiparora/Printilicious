@@ -48,10 +48,18 @@ namespace Printilicious.App_Start
 
         private void FetchProductCategoriesAndAddToCache()
         {
-            var productCategories = DependencyFactory.Resolve<ProductBDC>().GetAllProductCategories();
-            CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-            cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddDays(1);
-            memoryCache.Add(CacheConstants.PRODUCT_CATEGORIES_CACHE_ITEM, productCategories, cacheItemPolicy);
+            var productCategoriesResult = DependencyFactory.Resolve<ProductBDC>().GetAllProductCategories();
+            if (productCategoriesResult.IsSuccessful)
+            {
+                CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
+                cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddDays(1);
+                memoryCache.Add(CacheConstants.PRODUCT_CATEGORIES_CACHE_ITEM, productCategoriesResult.Result, cacheItemPolicy);
+                LogFactory.Instance.LogInfo(Strings.Log_Info_CacheProductCategoriesInitializedSuccessfully, DateTime.UtcNow.ToString());
+            }
+            else
+            {
+                LogFactory.Instance.LogWarning(Strings.Log_Warning_NotAbleToFetchProductCategories);
+            }
         }
 
     }

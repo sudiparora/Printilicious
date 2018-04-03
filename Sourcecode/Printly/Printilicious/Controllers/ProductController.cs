@@ -1,5 +1,6 @@
 ﻿using Printilicious.Models.Product;
 using Printly.Business.BDC;
+using Printly.DTO.Product;
 using Printly.Shared.Core;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,32 @@ namespace Printilicious.Controllers
         public ActionResult Index(string productCode = "")
         {
             ProductViewModel viewModel = new ProductViewModel();
-            viewModel.Product = DependencyFactory.Resolve<ProductBDC>().GetProductDetail(productCode);
-            return View(viewModel);
+            OperationResult<ProductDTO> productDTOResult = DependencyFactory.Resolve<ProductBDC>().GetProductDetail(productCode);
+            if (productDTOResult.IsSuccessful)
+            {
+                viewModel.Product = productDTOResult.Result;
+                return View(viewModel);
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
         public ActionResult GetProductsForCategory(string categoryCode = "")
         {
             ProductCategoryViewModel viewModel = new ProductCategoryViewModel();
-            viewModel.CategoryCode = categoryCode;
-            viewModel.Products = DependencyFactory.Resolve<ProductBDC>().GetAllProductsForCategory(categoryCode);
-            return View("ProductCategory", viewModel);
+            OperationResult<List<ProductDTO>> allProductsForCategoryResult = DependencyFactory.Resolve<ProductBDC>().GetAllProductsForCategory(categoryCode);
+            if (allProductsForCategoryResult.IsSuccessful)
+            {
+                viewModel.CategoryCode = categoryCode;
+                viewModel.Products = allProductsForCategoryResult.Result;
+                return View("ProductCategory", viewModel);
+            }
+            else
+            {
+                return View("Error");
+            }
         }
     }
 }
