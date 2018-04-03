@@ -1,3 +1,7 @@
+IF OBJECT_ID('usp_GetProductDetail', 'P') IS NOT NULL
+    DROP PROCEDURE usp_GetProductDetail
+GO
+
 IF OBJECT_ID('usp_GetProductsForCategory', 'P') IS NOT NULL
     DROP PROCEDURE usp_GetProductsForCategory
 GO
@@ -46,13 +50,23 @@ GO
 
 --GO
 
+CREATE PROCEDURE usp_GetProductDetail
+(
+	@ProductCode VARCHAR(50)
+)
+AS
+BEGIN
+	SELECT Prod.ProductID, Prod.ProductDesc, Prod.ProductName, Prod.ProductCode FROM tblProduct Prod WHERE Prod.ProductCode = @ProductCode
+END
+GO
+
 CREATE PROCEDURE usp_GetProductsForCategory
 (
 	@CategoryCode VARCHAR(200)
 )
 AS
 BEGIN
-	SELECT Prod.ProductID, Prod.ProductDesc, Prod.ProductName, Prod.ProductCode from tblProduct Prod
+	SELECT Prod.ProductID, Prod.ProductDesc, Prod.ProductName, Prod.ProductCode FROM tblProduct Prod
 		INNER JOIN tblProductCategory ProdCat ON Prod.ProductCategoryID = ProdCat.ProductCategoryID
 	 WHERE ProdCat.ProductCategoryCode = @CategoryCode;
 END
@@ -82,51 +96,51 @@ END
 GO
 
 
-CREATE PROCEDURE usp_FindUserByEmailId
-(
-	@EmailAddress VARCHAR(200)
-)
-AS
-BEGIN
-	SELECT Email from tblUser WHERE Email = @EmailAddress;
-END
-GO
+--CREATE PROCEDURE usp_FindUserByEmailId
+--(
+--	@EmailAddress VARCHAR(200)
+--)
+--AS
+--BEGIN
+--	SELECT Email from tblUser WHERE Email = @EmailAddress;
+--END
+--GO
 
-CREATE PROCEDURE usp_CreateNewUser
-(
-	@UserID VARCHAR(MAX),
-	@EmailAddress VARCHAR(200),
-	@PasswordHash VARCHAR(MAX),
-	@IsNewUserCreated BIT OUTPUT
-)
-AS
-BEGIN
-	IF NOT EXISTS (SELECT 1 FROM tblUser WHERE Email = @EmailAddress)
-	BEGIN
-		INSERT INTO [dbo].[tblUser]
-				   ([UserID]
-				   ,[PasswordHash]
-				   ,[Email])
-			 VALUES
-				   (@UserID
-				   ,@PasswordHash
-				   ,@EmailAddress)
+--CREATE PROCEDURE usp_CreateNewUser
+--(
+--	@UserID VARCHAR(MAX),
+--	@EmailAddress VARCHAR(200),
+--	@PasswordHash VARCHAR(MAX),
+--	@IsNewUserCreated BIT OUTPUT
+--)
+--AS
+--BEGIN
+--	IF NOT EXISTS (SELECT 1 FROM tblUser WHERE Email = @EmailAddress)
+--	BEGIN
+--		INSERT INTO [dbo].[tblUser]
+--				   ([UserID]
+--				   ,[PasswordHash]
+--				   ,[Email])
+--			 VALUES
+--				   (@UserID
+--				   ,@PasswordHash
+--				   ,@EmailAddress)
 
-		SELECT @IsNewUserCreated = COUNT(1) FROM tblUser WHERE Email = @EmailAddress
-	END
-END
-GO
+--		SELECT @IsNewUserCreated = COUNT(1) FROM tblUser WHERE Email = @EmailAddress
+--	END
+--END
+--GO
 
-CREATE PROCEDURE usp_FindUserById
-(
-	@UserID VARCHAR(MAX)
-)
-AS
-BEGIN
-	SELECT UserID, PasswordHash, Email, PhoneNumber, IsEmailConfirmed, AccessFailedCount, LockoutEnabled
-	FROM tblUser WHERE UserID = @UserID
-END
-GO
+--CREATE PROCEDURE usp_FindUserById
+--(
+--	@UserID VARCHAR(MAX)
+--)
+--AS
+--BEGIN
+--	SELECT UserID, PasswordHash, Email, PhoneNumber, IsEmailConfirmed, AccessFailedCount, LockoutEnabled
+--	FROM tblUser WHERE UserID = @UserID
+--END
+--GO
 
 CREATE PROCEDURE usp_AddItemToCart
 (

@@ -7,6 +7,7 @@
 
     internal class SPConstants
     {
+        internal const string SP_GET_PRODUCT_DETAIL = "usp_GetProductDetail";
         internal const string SP_GET_PRODUCTS_FOR_CATEGORY = "usp_GetProductsForCategory";
         internal const string SP_GET_ALL_PRODUCTCATEGORIES = "usp_FetchProductCategories";
         internal const string SP_GET_ALL_PRODUCTGROUPS = "usp_FetchProductGroupCategories";

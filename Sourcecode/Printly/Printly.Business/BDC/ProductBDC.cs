@@ -127,10 +127,10 @@ namespace Printly.Business.BDC
             List<ProductDTO> allProductDTOs = new List<ProductDTO>();
             try
             {
-                OperationResult<List<Product>> allProducts = DependencyFactory.Resolve<ProductDAC>().GetAllProductsForCategory(categoryCode);
-                if (allProducts.IsSuccessful)
+                OperationResult<List<Product>> allProductsResult = DependencyFactory.Resolve<ProductDAC>().GetAllProductsForCategory(categoryCode);
+                if (allProductsResult.IsSuccessful)
                 {
-                    allProductDTOs = Mapper.Map<List<Product>, List<ProductDTO>>(allProducts.Result);
+                    allProductDTOs = Mapper.Map<List<Product>, List<ProductDTO>>(allProductsResult.Result);
                 }
                 else
                 { }
@@ -140,6 +140,26 @@ namespace Printly.Business.BDC
                 allProductDTOs = null;
             }
             return allProductDTOs;
+        }
+
+        public ProductDTO GetProductDetail(string productCode)
+        {
+            ProductDTO product = new ProductDTO();
+            try
+            {
+                OperationResult<Product> productResult = DependencyFactory.Resolve<ProductDAC>().GetProductDetails(productCode);
+                if (productResult.IsSuccessful)
+                {
+                    product = Mapper.Map<Product, ProductDTO>(productResult.Result);
+                }
+                else
+                { }
+            }
+            catch (Exception ex)
+            {
+                product = null;
+            }
+            return product;
         }
     }
 }

@@ -91,7 +91,7 @@
                                                                 @foreach (var grandChildCategory in childCategory.ChildProductCategories)
                                                                 {
                                                                     <li>
-                                                                        @Html.ActionLink(@grandChildCategory.ProductCategoryName, "GetProductsForCategory", "Home", new { categoryCode = @grandChildCategory.ProductCategoryCode }, null)
+                                                                        @Html.ActionLink(@grandChildCategory.ProductCategoryName, "GetProductsForCategory", "Product", new { categoryCode = @grandChildCategory.ProductCategoryCode }, null)
                                                                         @*<a href="category.html">@grandChildCategory.ProductCategoryName</a>*@
                                                                     </li>
                                                                 }

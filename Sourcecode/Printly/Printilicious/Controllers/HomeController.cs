@@ -31,13 +31,5 @@ namespace Printilicious.Controllers
             return View();
         }
 
-        public ActionResult GetProductsForCategory(string categoryCode = "")
-        {
-            ProductCategoryViewModel viewModel = new ProductCategoryViewModel();
-            viewModel.CategoryCode = categoryCode;
-            viewModel.Products = DependencyFactory.Resolve<ProductBDC>().GetAllProductsForCategory(categoryCode);
-            return View("ProductCategory", viewModel);
-        }
-
     }
 }

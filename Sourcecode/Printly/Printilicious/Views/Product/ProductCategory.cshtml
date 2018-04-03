@@ -12,26 +12,24 @@
     <div class="row products">
         @foreach (var product in Model.Products)
         {
-            string productCode = @product.ProductCode;
-            string imagePath = string.Format("/Content/images/products/bookmarks/{0}.png", productCode);
-
+            string imagePath = string.Format("/Content/images/products/bookmarks/{0}.png", @product.ProductCode).Replace('-', '_');
             <div class="col-md-3 col-sm-6">
                 <div class="product">
                     <div class="flip-container">
                         <div class="flipper">
                             <div class="front">
-                                <a href="ProductDetail.html">
+                                <a href="@Url.Action("Index", "Product", new { productCode = @product.ProductCode }, null)">
                                     <img src="@imagePath" alt="" class="img-responsive">
                                 </a>
                             </div>
                             <div class="back">
-                                <a href="ProductDetail.html">
-                                    <img src="/Content/images/products/bookmarks/pp_st_bm_11.png" alt="" class="img-responsive">
+                                <a href="@Url.Action("Index", "Product", new { productCode = @product.ProductCode }, null)">
+                                    <img src="@imagePath" alt="" class="img-responsive">
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <a href="ProductDetail.html" class="invisible">
+                    <a href="@Url.Action("Index", "Product", new { productCode = @product.ProductCode }, null)" class="invisible">
                         <img src="@imagePath" alt="" class="img-responsive">
                     </a>
                     <div class="text">

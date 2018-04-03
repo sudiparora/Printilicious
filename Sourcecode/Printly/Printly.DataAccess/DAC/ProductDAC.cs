@@ -65,5 +65,22 @@ namespace Printly.DataAccess.DAC
                 return OperationResult<List<Product>>.LogAndReturnFailureResult(ex);
             }
         }
+
+        public OperationResult<Product> GetProductDetails(string productCode)
+        {
+            try
+            {
+                Product product = new Product();
+                SqlCommand command = GetDbSprocCommand(SPConstants.SP_GET_PRODUCT_DETAIL);
+                command.Parameters.Add(CreateParameter("@ProductCode", productCode));
+                product = GetSingleEntity<Product>(ref command);
+                return OperationResult<Product>.ReturnSuccessResult(product);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<Product>.LogAndReturnFailureResult(ex);
+            }
+
+        }
     }
 }
