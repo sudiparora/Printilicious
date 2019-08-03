@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -244,32 +245,23 @@
     <Content Include="Content\css\owl.theme.css" />
     <Content Include="Content\css\style.default.css" />
     <Content Include="Content\images\logo.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_10.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_11.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_12.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_13.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_14.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_15.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_16.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_17.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_18.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_19.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_2.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_20.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_21.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_22.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_23.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_24.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_3.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_4.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_5.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_6.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_7.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_8.png" />
-    <Content Include="Content\images\products\bookmarks\pp_st_bm_9.png" />
+    <Content Include="Content\images\products\per_wc_pc_105.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_123.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_131.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_1A.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_1B.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_1C.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_1D.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_1E.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_1F.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_2.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_3A.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_3B.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_44A.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_44B.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_44C.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_44D.jpg" />
+    <Content Include="Content\images\products\per_wc_pc_44E.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

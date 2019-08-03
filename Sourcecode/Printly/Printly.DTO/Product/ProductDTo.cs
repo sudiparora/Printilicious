@@ -8,5 +8,6 @@ namespace Printly.DTO.Product
         public string ProductName { get; set; }
         public string ProductDesc { get; set; }
         public string ProductCode { get; set; }
+
     }
 }
